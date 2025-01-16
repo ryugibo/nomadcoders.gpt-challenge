@@ -176,7 +176,6 @@ if open_api_base and open_api_key:
             )
             with st.chat_message("ai"):
                 response = invoke_chain(chain, st.session_state["memory"], message)
-                st.write(st.session_state["memory"].load_memory_variables({}))
     else:
         st.session_state["messages"] = []
 
