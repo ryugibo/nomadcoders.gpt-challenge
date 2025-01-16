@@ -29,7 +29,7 @@ class ChatCallbackHandler(BaseCallbackHandler):
 
 
 @st.cache_data(show_spinner="Embedding file...")
-def embed_file(file):
+def embed_file(file, base_url, api_key):
     file_content = file.read()
     file_path = f"./.cache/files/{file.name}"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
@@ -48,7 +48,11 @@ def embed_file(file):
 
     docs = loader.load_and_split(text_splitter=splitter)
 
-    embedding = OpenAIEmbeddings(model="text-embedding-3-small")
+    embedding = OpenAIEmbeddings(
+        model="text-embedding-3-small",
+        base_url=base_url,
+        api_key=api_key,
+    )
 
     cache_embeddings = CacheBackedEmbeddings.from_bytes_store(
         embedding,
@@ -143,7 +147,11 @@ if open_api_base and open_api_key:
         )
 
     if file:
-        retriever = embed_file(file)
+        retriever = embed_file(
+            file,
+            open_api_base,
+            open_api_key,
+        )
 
         send_message("I'm ready! Ask away!", "ai", save=False)
 
