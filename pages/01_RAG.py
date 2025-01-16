@@ -102,6 +102,8 @@ if open_api_base and open_api_key:
             model_name="gpt-4o-mini",
             streaming=True,
             callbacks=[ChatCallbackHandler()],
+            base_url=open_api_base,
+            api_key=open_api_key,
         )
     if "memory" not in st.session_state:
         st.session_state["memory"] = ConversationBufferMemory(
