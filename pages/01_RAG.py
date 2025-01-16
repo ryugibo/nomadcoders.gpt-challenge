@@ -93,7 +93,10 @@ def invoke_chain(chain, memory, question):
 with st.sidebar:
     open_api_base = st.text_input(
         "OPENAI API BASE URL",
-        value=os.getenv("OPENAI_API_BASE"),
+        value=os.getenv(
+            "OPENAI_API_BASE",
+            "https://api.openai.com/v1",
+        ),
     )
     open_api_key = st.text_input(
         "OPENAI API KEY",
