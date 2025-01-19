@@ -18,7 +18,7 @@ class Quiz:
         self.index = index
 
     def render(self):
-        st.write(self.question)
+        st.subheader(f"{self.index + 1}. {self.question}")
         self.select = st.radio(
             "Select an option",
             [answer["answer"] for answer in self.answers],
@@ -37,6 +37,7 @@ def create_quiz(questions):
     all_correct = True
     for i, question in enumerate(questions):
         all_correct = Quiz(question, i).render() and all_correct
+        st.divider()
     return all_correct
 
 
