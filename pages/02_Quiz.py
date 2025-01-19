@@ -64,7 +64,7 @@ def split_file(file):
 
 
 @st.cache_data(show_spinner="Making quiz...")
-def run_quiz_chain(topic, _docs, _llm, difficulty):
+def run_quiz_chain(_docs, _llm, difficulty):
     questions_prompt = ChatPromptTemplate.from_messages(
         [
             (
@@ -195,7 +195,7 @@ if open_api_base and open_api_key and docs:
         functions=[function],
     )
 
-    response = run_quiz_chain(topic if topic else file.name, docs, llm, difficulty)
+    response = run_quiz_chain(docs, llm, difficulty)
     with st.form("questions_form"):
         questions = json.loads(response.additional_kwargs["function_call"]["arguments"])
         all_correct = create_quiz(questions["questions"])
