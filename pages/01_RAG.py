@@ -91,6 +91,11 @@ def invoke_chain(chain, memory, question):
 
 
 with st.sidebar:
+    st.link_button(
+        label="https://github.com/ryugibo/nomadcoders.gpt-challenge/blob/main/pages/01_RAG.py",
+        url="https://github.com/ryugibo/nomadcoders.gpt-challenge/blob/main/pages/01_RAG.py",
+    )
+
     open_api_base = st.text_input(
         "OPENAI API BASE URL",
         value=os.getenv(
