@@ -161,9 +161,10 @@ with st.sidebar:
         "OPENAI API BASE URL",
         value=os.getenv(
             "OPENAI_API_BASE",
-            "https://api.openai.com/v1",
+            "https://api.openai.com/v1/",
         ),
     )
+
     open_api_key = st.text_input(
         "OPENAI API KEY",
         value=os.getenv("OPENAI_API_KEY"),
